@@ -1,0 +1,59 @@
+<h2>Reactive Switches</h2>
+<hr>
+
+<form [formGroup]="formulario">
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Genero</label>
+    <div class="col-sm-9">
+      <div class="form-check">
+        <!-- aca estaba el atributo value="M" -->
+        <input type="radio" class="form-check-input" id="masculinoRadio" name="genero" formControlName="genero"
+          value="M">
+        <label for="masculinoRadio" class="form-check-label">Masculino</label>
+      </div>
+      <div class="form-check">
+        <!-- aca estaba el atributo value="F" -->
+        <input type="radio" class="form-check-input" id="femeninoRadio" name="genero" formControlName="genero"
+          value="F">
+        <label for="femeninoRadio" class="form-check-label">Femenino</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Notificaciones</label>
+    <div class="col-sm-9">
+      <div class="form-check form-switch mt-2">
+        <input class="form-check-input" type="checkbox" id="notificar" name="notificaciones"
+          formControlName="notificaciones">
+        <label for="notificar" class="form-check-label">Recibir notificaciones</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label"></label>
+    <div class="col-sm-9">
+      <input type="checkbox" class="form-check-input" id="terminos" name="terminosYCondiciones"
+        formControlName="condiciones">
+      <label for="terminos" class="form-check-label ms-1">Aceptar terminos y
+        condiciones</label>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <button [disabled]="formulario.invalid" type="submit" class="btn btn-primary float-start"
+        (click)="guardar()">Guardar</button>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <span>formulario.value</span>
+  <pre>{{formulario.value | json}}</pre>
+  <span>valido</span>
+  <pre>{{formulario.valid}}</pre>
+  <span>persona</span>
+  <pre>{{persona | json}}</pre>
+</div>

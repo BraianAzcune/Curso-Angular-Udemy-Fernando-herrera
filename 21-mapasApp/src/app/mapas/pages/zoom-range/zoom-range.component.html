@@ -1,0 +1,35 @@
+<div id="mapa-zoom-range" class="h-100"></div>
+
+<div class="row controles">
+  <div class="col-12">
+    <label class="form-label" for="rango"
+      >Zoom : {{ currentZoom | number : ".0-1" }} - Lng|Lat [{{
+        coordenadas
+      }}]</label
+    >
+    <!-- DECIMAL PIPE NO FUNCIONA , NI OTRA FORMAS DE HACERLO
+    HAY QUE CREAR UN CUSTOM PIPE
+  https://angular.io/guide/pipes#creating-pipes-for-custom-data-transformations -->
+    <input
+      type="range"
+      class="form-range"
+      id="rango"
+      [min]="minRange"
+      [max]="maxRange"
+      #inputRef
+      (change)="changeZoom(inputRef.value)"
+      [(ngModel)]="currentZoom"
+    />
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" (click)="changeZoom(currentZoom - 1)">
+      -
+    </button>
+    <button
+      class="btn btn-primary float-end"
+      (click)="changeZoom(currentZoom + 1)"
+    >
+      +
+    </button>
+  </div>
+</div>

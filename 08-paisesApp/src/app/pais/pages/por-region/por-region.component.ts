@@ -1,0 +1,34 @@
+import { Component } from '@angular/core';
+import { regiones as r, Region } from '../../interfaces/regionesCodigos';
+import { PaisService } from '../../services/pais.service';
+import { Country } from '../../interfaces/paises.interface';
+
+@Component({
+  selector: 'app-por-region',
+  templateUrl: './por-region.component.html',
+  styles: [
+    `
+      button {
+        margin-right: 5px;
+        margin-bottom: 5px;
+      }
+    `,
+  ],
+})
+export class PorRegionComponent {
+  regiones: Region[];
+  regionActiva: Region = {} as Region;
+  paises: Country[] = [];
+  constructor(private paisService: PaisService) {
+    this.regiones = r;
+  }
+
+  activarRegion(region: Region) {
+    if (region == this.regionActiva) return;
+    this.paises = [];
+    this.regionActiva = region;
+    this.paisService
+      .buscarPaisesPorRegion(this.regionActiva.codigo)
+      .subscribe((o) => (this.paises = o));
+  }
+}

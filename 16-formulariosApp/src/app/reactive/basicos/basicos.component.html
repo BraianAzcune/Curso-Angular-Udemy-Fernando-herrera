@@ -1,0 +1,55 @@
+<h2>Reactive basicos</h2>
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="formulario">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Producto</label>
+        <div class="col-sm-9">
+          <input placeholder="nombre del producto" type="text"
+            class="form-control" name="producto"
+            formControlName="nombre"
+            >
+          <span [appMostrar]="campoEsNoValido('nombre')"
+            class="form-text text-danger"
+            >Debe de ser almenos 3 letras</span>
+        </div>
+        <label class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-sm-9">
+          <input placeholder="precio del producto" type="number"
+            class="form-control" name="precio"
+            formControlName="precio"
+            >
+          <span [appMostrar]="campoEsNoValido('precio')"
+            class="form-text text-danger">El precio debe ser mayor a 0</span>
+        </div>
+        <label class="col-sm-3 col-form-label">Existencias</label>
+        <div class="col-sm-9">
+          <input placeholder="Existencias del producto" type="number"
+            class="form-control" name="existencias"
+            formControlName="existencias"
+            >
+          <span [appMostrar]="campoEsNoValido('existencias')"
+            class="form-text text-danger">debe ser 0 o positivo</span>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button type="submit" class="btn btn-primary float-end">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre>{{formulario.valid}}</pre>
+    <span>Pristine</span>
+    <pre>{{formulario.pristine}}</pre>
+    <span>Touched</span>
+    <pre>{{formulario.touched}}</pre>
+    <span>Value</span>
+    <pre>{{formulario.value | json}}</pre>
+  </div>
+</div>

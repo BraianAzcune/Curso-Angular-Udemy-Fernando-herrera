@@ -1,0 +1,7 @@
+<ul ngbNav [(activeId)]="activeId" class="nav nav-pills">
+  <li *ngFor="let link of listaLinks" [ngbNavItem]="link.path + link.fragment">
+    <a class="fs-5" ngbNavLink [routerLink]="link.path + link.fragment">{{
+      link.titulo | titlecase
+    }}</a>
+  </li>
+</ul>

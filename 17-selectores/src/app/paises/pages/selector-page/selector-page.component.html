@@ -1,0 +1,66 @@
+<div class="m-5">
+  <h1 class="text-xl">Selectores anidados</h1>
+  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+
+  <form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <div class="flex flex-col">
+      <div class="flex">
+        <label class="m-5 p-2 font-medium text-gray-900" for="region"
+          >region</label
+        >
+        <select
+          class="grow m-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          id="region"
+          formControlName="region"
+        >
+          <option value="">seleccione region</option>
+          <option *ngFor="let region of regiones" [value]="region">
+            {{ region }}
+          </option>
+        </select>
+      </div>
+      <div class="flex">
+        <label class="m-5 p-2 font-medium text-gray-900" for="pais">pais</label>
+        <select
+          class="grow m-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          id="pais"
+          formControlName="pais"
+        >
+          <option value="">seleccione pais</option>
+          <option *ngFor="let pais of paises" [value]="pais.cca3">
+            {{ pais.name.common }}
+          </option>
+        </select>
+      </div>
+      <div class="flex">
+        <label class="m-5 p-2 font-medium text-gray-900" for="frontera"
+          >frontera</label
+        >
+        <select
+          class="grow m-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          id="frontera"
+          formControlName="frontera"
+        >
+          <option value="">seleccione el pais fronterizo</option>
+          <option *ngFor="let frontera of fronteras" [value]="frontera.cca3">
+            {{ frontera.name.common }}
+          </option>
+        </select>
+      </div>
+
+      <div class="flex flex-row-reverse m-5 p-2">
+        <button
+          class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          type="submit"
+        >
+          Seleccionar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<h2>formulario valido</h2>
+<pre>{{ formulario.valid }}</pre>
+<h2>valor formulario</h2>
+<pre>{{ formulario.value | json }}</pre>

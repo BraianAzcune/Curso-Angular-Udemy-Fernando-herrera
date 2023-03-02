@@ -1,0 +1,6 @@
+
+Se escribe "ba" deben aparecer 5 resultados.
+
+Se escribe "batman" debe aparecer 1 resultado.
+al hacerle click, el input debe tener escrito "batman"
+y debe rellenarse el tercer div con su informacion.

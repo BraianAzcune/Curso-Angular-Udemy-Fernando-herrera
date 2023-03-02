@@ -1,0 +1,16 @@
+<div fxFlex fxLayoutGap="10px">
+  <div fxLayout="column">
+    <h1>¿Está seguro?</h1>
+
+    <p>
+      Esta a punto de borrar a <strong>{{ data.superhero }}</strong>
+      <br />
+      ¿Desea continuar?
+    </p>
+  </div>
+  <div fxLayout="row">
+    <button mat-button (click)="respuesta(true)" color="warn">SI</button>
+    <span class="spacer"></span>
+    <button mat-button (click)="respuesta(false)" color="primary">No</button>
+  </div>
+</div>

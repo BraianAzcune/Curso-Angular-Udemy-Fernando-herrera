@@ -1,0 +1,15 @@
+<section class="bg-dark border-right p-3" id="sidebar">
+  <h2 class="text-light">Gifs App</h2>
+  <div class="list-group list-reset">
+    <hr />
+    <ng-container *ngFor="let valor of historial">
+      <a
+        (click)="buscar(valor)"
+        href="#"
+        class="list-group-item list-group-item-action"
+        >{{ valor | titlecase }}</a
+      >
+      <hr class="text-white" />
+    </ng-container>
+  </div>
+</section>

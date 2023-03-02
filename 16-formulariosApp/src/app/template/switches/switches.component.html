@@ -1,0 +1,53 @@
+<h2>Template Switches</h2>
+<hr>
+
+<form #formulario="ngForm">
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Genero</label>
+    <div class="col-sm-9">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="masculinoRadio" name="genero" value="M"
+          [(ngModel)]="persona.genero" required>
+        <label for="masculinoRadio" class="form-check-label">Masculino</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="femeninoRadio" name="genero" value="F"
+          [(ngModel)]="persona.genero" required>
+        <label for="femeninoRadio" class="form-check-label">Femenino</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Notificaciones</label>
+    <div class="col-sm-9">
+      <div class="form-check form-switch mt-2">
+        <input class="form-check-input" type="checkbox" id="notificar" name="notificaciones"
+          [(ngModel)]="persona.notificaciones">
+        <label for="notificar" class="form-check-label">Recibir notificaciones</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label"></label>
+    <div class="col-sm-9">
+      <input type="checkbox" class="form-check-input" id="terminos" name="terminosYCondiciones"
+        [(ngModel)]="terminosYCondiciones" required>
+      <label for="terminos" class="form-check-label ms-1">Aceptar terminos y
+        condiciones</label>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <button type="submit" class="btn btn-primary float-start" [disabled]="formulario.invalid">Guardar</button>
+    </div>
+  </div>
+</form>
+
+<h5>Valido: {{formulario.valid}}</h5>
+<h5>Condiciones: </h5>
+<h4>Valor del formulario:</h4>
+<pre>{{formulario.value| json}}</pre>
+<br>

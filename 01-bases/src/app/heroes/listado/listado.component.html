@@ -1,0 +1,15 @@
+<p>listado works!</p>
+
+<button (click)="borrarHeroe()">Borrar heroe</button>
+<div *ngIf="ultimoBorrado; else noBorrado">
+  <h3>
+    ultimo heroe borrado: <small>{{ ultimoBorrado }}</small>
+  </h3>
+</div>
+<ng-template #noBorrado>
+  <h3>aca aparecera el ultimo heroe borrado</h3>
+</ng-template>
+
+<ul>
+  <li *ngFor="let heroe of heroes">{{ heroe }}</li>
+</ul>
