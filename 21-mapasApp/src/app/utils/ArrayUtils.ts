@@ -14,4 +14,13 @@ export class ArrayUtils {
     }
     return arr;
   }
+
+  static distance(arr: number[], arr2: number[]):number{
+    if(arr.length != arr2.length) throw Error('se requiere misma cantidad de dimension para calcular distancia');
+    let sum = 0;
+    for(let i = 0 ; i < arr.length; i++){
+      sum += Math.pow(arr[i] - arr2[i],2);
+    }
+    return Math.sqrt(sum);
+  }
 }

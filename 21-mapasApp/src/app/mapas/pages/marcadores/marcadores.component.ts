@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { fromEvent } from 'rxjs';
 import { ArrayUtils } from 'src/app/utils/ArrayUtils';
+import { throttle } from '../../../utils/esperas';
 
 
 interface Marcador {
@@ -78,6 +79,35 @@ export class MarcadoresComponent implements OnInit, OnDestroy {
     marcador.marker.remove();
     ArrayUtils.removeFirst(this.marcadores, marcador);
     this.guardarMarcadoresLocalStorage(this.marcadores);
+  }
+
+
+  alMover = (current:number[])=>{console.log('se mueve');};
+
+  comienzaMover(refLi: HTMLElement,ev: DragEvent){
+
+    const origen = [ev.clientX, ev.clientY];
+
+    this.alMover = throttle((current:number[]= origen)=>{
+      const distancia = ArrayUtils.distance(origen,current);
+      const opacidad = Math.max((-(1/250)*distancia) +1, 0);
+      refLi.style.opacity = String(opacidad);
+    },50);
+
+
+  }
+
+  moviendo(ev: DragEvent){
+    this.alMover([ev.clientX,ev.clientY]);
+  }
+
+  terminaMover(refLi: HTMLElement,marcador: Marcador){
+    console.log('termina', );
+    if(Number(refLi.style.opacity)<0.01){
+      this.borrarMarcador(marcador);
+    }else{
+      refLi.style.opacity = '1';
+    }
   }
 
   guardarMarcadoresLocalStorage(marcadores: Marcador[]){

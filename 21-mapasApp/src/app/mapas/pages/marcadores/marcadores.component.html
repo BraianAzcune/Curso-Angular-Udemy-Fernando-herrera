@@ -10,6 +10,11 @@
     *ngFor="let marcador of marcadores; let i = index"
     class="list-group-item"
     [ngStyle]="{ 'background-color': marcador.color }"
+    draggable="true"
+    #refLi
+    (dragstart)="comienzaMover(refLi, $event)"
+    (drag)="moviendo($event)"
+    (dragend)="terminaMover(refLi, marcador)"
   >
     <div (click)="centrarEnMarcador(marcador)">
       <app-input-db-click-editable
