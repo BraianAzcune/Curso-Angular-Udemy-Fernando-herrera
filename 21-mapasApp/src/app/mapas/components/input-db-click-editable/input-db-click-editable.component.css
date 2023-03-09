@@ -1,0 +1,24 @@
+.texto-lectura{
+  color: white;
+  text-shadow:
+    0.07em 0 black,
+    0 0.07em black,
+    -0.07em 0 black,
+    0 -0.07em black;
+
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  border: 0;
+  border-width: 0;
+  box-shadow: none;
+  outline: none;
+}
+
+
+
+
+.texto-editable{
+  background: rgba(255, 255, 255, 0.4);
+  cursor: default;
+}

@@ -1,1 +1,24 @@
-<p>marcadores works!</p>
+<ul class="list-group">
+  <li class="list-group-item list-group-item-info" (click)="crearMarcador()">
+    Agregar
+  </li>
+  <li
+    *ngFor="let marcador of marcadores; let i = index"
+    class="list-group-item"
+    [ngStyle]="{ 'background-color': marcador.color }"
+  >
+    <div (click)="centrarEnMarcador(marcador)">
+      <app-input-db-click-editable
+        [(texto)]="marcador.nombre"
+      ></app-input-db-click-editable>
+    </div>
+
+    <!-- <input
+      class="marcador-nombre"
+      [(ngModel)]="marcador.nombre"
+      (dblclick)=""
+      [readonly]="true"
+    /> -->
+  </li>
+</ul>
+<div id="mapa-marcador" class="h-100"></div>

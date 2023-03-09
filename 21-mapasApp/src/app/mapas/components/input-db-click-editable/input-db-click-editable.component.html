@@ -1,0 +1,12 @@
+<input
+  type="text"
+  value="hola como estas"
+  class="texto-lectura"
+  [value]="texto"
+  (input)="changeTexto($event)"
+  [ngClass]="{ 'texto-editable': !soloLectura }"
+  (dblclick)="changeEditable($event)"
+  (focusout)="soloLectura = true"
+  (keydown.enter)="soloLectura = true"
+  [readOnly]="soloLectura"
+/>

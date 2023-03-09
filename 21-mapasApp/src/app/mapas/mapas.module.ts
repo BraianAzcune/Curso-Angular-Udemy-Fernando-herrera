@@ -8,6 +8,7 @@ import { FullScreenComponent } from './pages/full-screen/full-screen.component';
 import { MarcadoresComponent } from './pages/marcadores/marcadores.component';
 import { ZoomRangeComponent } from './pages/zoom-range/zoom-range.component';
 import { PropiedadesComponent } from './pages/propiedades/propiedades.component';
+import { InputDbClickEditableComponent } from './components/input-db-click-editable/input-db-click-editable.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PropiedadesComponent } from './pages/propiedades/propiedades.component'
     FullScreenComponent,
     MarcadoresComponent,
     ZoomRangeComponent,
-    PropiedadesComponent
+    PropiedadesComponent,
+    InputDbClickEditableComponent
   ],
   imports: [
     CommonModule,
