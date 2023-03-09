@@ -12,7 +12,7 @@ export class ZoomRangeComponent implements OnInit, OnDestroy {
   minRange= 10;
   maxRange = 20;
   currentZoom = 14;
-  coordenadas: number[] = [-61.551315,-34.858458];
+  coordenadas: number[] = [-57.965599,-34.912307];
 
   mapa!: mapboxgl.Map;
   subscriptionCoordenadas?: Subscription;

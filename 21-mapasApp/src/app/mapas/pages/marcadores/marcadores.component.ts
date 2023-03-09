@@ -18,8 +18,8 @@ interface Marcador {
 export class MarcadoresComponent implements OnInit {
 
   mapa!: mapboxgl.Map;
-  currentZoom = 14;
-  coordenadas: number[] = [-61.551315,-34.858458];
+  currentZoom = 16;
+  coordenadas: number[] = [-57.965599,-34.912307];
 
   marcadores: Marcador[] = [];
 
@@ -30,10 +30,6 @@ export class MarcadoresComponent implements OnInit {
       center: this.coordenadas as mapboxgl.LngLatLike, // starting position [lng, lat]
       zoom: this.currentZoom, // starting zoom
     });
-    const imagenMarcador = document.createElement('div');
-    imagenMarcador.innerHTML = 'hola';
-    const marcador = new mapboxgl.Marker({element:imagenMarcador}).setLngLat(this.coordenadas as mapboxgl.LngLatLike).addTo(this.mapa);
-
 
     const coordenada$ = fromEvent(this.mapa,'move');
     coordenada$.subscribe(()=>{
