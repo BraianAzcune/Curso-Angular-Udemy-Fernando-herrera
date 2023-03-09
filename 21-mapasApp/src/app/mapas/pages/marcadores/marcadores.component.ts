@@ -57,6 +57,7 @@ export class MarcadoresComponent implements OnInit, OnDestroy {
     const nuevoMarcador = new mapboxgl.Marker({draggable:true, color}).setLngLat(this.coordenadas as mapboxgl.LngLatLike).addTo(this.mapa);
 
     this.marcadores.push({color,marker:nuevoMarcador, nombre: 'marcador '+(this.marcadores.length+1)}as Marcador);
+    this.guardarMarcadoresLocalStorage(this.marcadores);
   }
 
   centrarEnMarcador(marcador: Marcador){
@@ -70,6 +71,12 @@ export class MarcadoresComponent implements OnInit, OnDestroy {
 
   cambioTextoMarcador(){
     // guardar todo de nuevo
+    this.guardarMarcadoresLocalStorage(this.marcadores);
+  }
+
+  borrarMarcador(marcador: Marcador){
+    marcador.marker.remove();
+    ArrayUtils.removeFirst(this.marcadores, marcador);
     this.guardarMarcadoresLocalStorage(this.marcadores);
   }
 
