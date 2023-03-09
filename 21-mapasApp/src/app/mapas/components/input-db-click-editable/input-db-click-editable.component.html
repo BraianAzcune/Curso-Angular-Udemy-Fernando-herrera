@@ -6,7 +6,7 @@
   (input)="changeTexto($event)"
   [ngClass]="{ 'texto-editable': !soloLectura }"
   (dblclick)="changeEditable($event)"
-  (focusout)="soloLectura = true"
-  (keydown.enter)="soloLectura = true"
+  (focusout)="changeSoloLectura()"
+  (keydown.enter)="changeSoloLectura()"
   [readOnly]="soloLectura"
 />
