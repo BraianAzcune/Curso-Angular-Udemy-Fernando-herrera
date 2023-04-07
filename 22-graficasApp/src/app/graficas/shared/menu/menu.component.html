@@ -1,7 +1,8 @@
 <div class="row mt-5">
-  <div class="col-md-3 col-sm-12">
-    <ul class="list-group">
+  <div class="col-md-2 col-sm-12">
+    <ul class="list-group flex-md-column flex-row">
       <li
+        role="button"
         *ngFor="let item of menuRutas"
         [routerLink]="[item.ruta]"
         routerLinkActive="active"
@@ -11,7 +12,7 @@
       </li>
     </ul>
   </div>
-  <div class="col-md-9 col-sm-12">
+  <div class="col-md-10 col-sm-12">
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -42,7 +42,7 @@
         ],
         "no-shadow": "error",
         "multiline-ternary": ["error", "never"],
-        "max-len": ["error", 100],
+        "max-len": ["error", 120],
         "no-var": "warn",
         "no-self-compare": "error",
         "no-unused-vars": [

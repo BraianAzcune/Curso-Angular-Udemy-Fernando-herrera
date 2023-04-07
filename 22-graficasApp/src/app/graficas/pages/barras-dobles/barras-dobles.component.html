@@ -1,1 +1,11 @@
-<p>barras-dobles works!</p>
+<h1>Graficas dobles</h1>
+<div class="row">
+  <div class="col-md-6">
+    <app-grafica-barra [barChartData]="nvidiaVsAmdGameData"></app-grafica-barra>
+  </div>
+  <div class="col-md-6">
+    <app-grafica-barra
+      [barChartData]="nvidiaVsAmdRenderTime"
+    ></app-grafica-barra>
+  </div>
+</div>
