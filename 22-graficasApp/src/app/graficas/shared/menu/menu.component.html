@@ -1,1 +1,17 @@
-<p>menu works!</p>
+<div class="row mt-5">
+  <div class="col-md-3 col-sm-12">
+    <ul class="list-group">
+      <li
+        *ngFor="let item of menuRutas"
+        [routerLink]="[item.ruta]"
+        routerLinkActive="active"
+        class="list-group-item"
+      >
+        {{ item.texto }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9 col-sm-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>
