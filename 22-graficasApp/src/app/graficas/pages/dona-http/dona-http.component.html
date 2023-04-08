@@ -1,1 +1,21 @@
-<p>dona-http works!</p>
+<h1>Cantidad de productos por categorias</h1>
+<hr />
+<div
+  *ngIf="cantidadDeProductosPorCategoria.length === 0; else divGrafica"
+  class="alert alert-info"
+>
+  Cargando Data...
+</div>
+<div class="row">
+  <div class="col">
+    <ng-template #divGrafica>
+      <canvas
+        baseChart
+        class="chart"
+        [data]="doughnutChartData"
+        [type]="doughnutChartType"
+      >
+      </canvas>
+    </ng-template>
+  </div>
+</div>
