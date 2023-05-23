@@ -9,7 +9,7 @@
       <input id="nombre" type="text" class="form-control" autocomplete="off" formControlName="nombre">
     </div>
     <div class="col-auto">
-      <span>informacion para el usuario</span>
+      <span appCustomLabel [errors]="formulario.get('nombre')?.errors">Temporal</span>
     </div>
   </div>
   <div class="row">
