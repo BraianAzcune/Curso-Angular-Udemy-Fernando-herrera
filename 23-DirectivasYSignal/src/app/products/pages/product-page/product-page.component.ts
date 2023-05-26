@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProductPageComponent {
 
+
+
   // constructor(private fb: FormBuilder){}
   private fb = inject(FormBuilder);
 

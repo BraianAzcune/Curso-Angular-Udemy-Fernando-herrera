@@ -1,0 +1,14 @@
+<div class="row mt-2 h-100">
+  <div class="col-2">
+    <nav class="navbar navbar-light">
+      <ul class="list-group">
+        <li *ngFor="let item of menu()" class="list-group-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="item.path">{{item.titulo}}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>
