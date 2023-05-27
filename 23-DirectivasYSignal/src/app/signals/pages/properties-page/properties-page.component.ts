@@ -5,5 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./properties-page.component.css']
 })
 export class PropertiesPageComponent {
+  changeInput(inputName: string, value: string) {
 
+  }
 }
