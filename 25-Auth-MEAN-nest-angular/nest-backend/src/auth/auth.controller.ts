@@ -6,12 +6,17 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUser } from './dto/login-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { LoginResponse } from './interfaces/login-response';
+import { AuthGuard } from './guards/auth.guard';
+import { UserFromToken } from 'src/decorators/user-id.decorators';
+import { User } from './entities/user.entity';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -32,14 +37,17 @@ export class AuthController {
   }
 
   @Get()
-  findAll() {
+  @UseGuards(AuthGuard)
+  findAll(@UserFromToken() userId: User) {
+    console.log('controller findAll', userId);
+
     return this.authService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.authService.findOne(+id);
+  // }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
