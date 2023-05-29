@@ -11,6 +11,7 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUser } from './dto/login-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { LoginResponse } from './interfaces/login-response';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -23,6 +24,11 @@ export class AuthController {
   @Post('/login')
   async login(@Body() loginUser: LoginUser) {
     return await this.authService.login(loginUser);
+  }
+
+  @Post('/register')
+  async register(@Body() createUserDto: CreateUserDto): Promise<LoginResponse> {
+    return await this.authService.register(createUserDto);
   }
 
   @Get()
