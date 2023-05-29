@@ -5,20 +5,25 @@ import {
   Logger,
   UnauthorizedException,
 } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './entities/user.entity';
 import { Model } from 'mongoose';
+import { LoginUser } from './dto/login-user.dto';
 
 import * as bcrypt from 'bcrypt';
-import { LoginUser } from './dto/login-user.dto';
+import { JwtPayload } from './interfaces/jwt-payload';
 
 @Injectable()
 export class AuthService {
   private readonly logger = new Logger(AuthService.name);
 
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<User>,
+    private jwtService: JwtService,
+  ) {}
 
   async login(loginUser: LoginUser) {
     const user = await this.userModel.findOne({ email: loginUser.email });
@@ -36,9 +41,16 @@ export class AuthService {
     const { password: _, ...rest } = user.toJSON();
 
     return {
-      token: 'hola',
+      token: await this.getJwtToken({
+        idUsuario: rest._id as unknown as string,
+      }),
       ...rest,
     };
+  }
+
+  async getJwtToken(payload: JwtPayload) {
+    const token = await this.jwtService.signAsync(payload);
+    return token;
   }
 
   async create(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
