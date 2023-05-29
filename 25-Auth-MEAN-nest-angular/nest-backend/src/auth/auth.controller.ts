@@ -1,16 +1,16 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUser } from './dto/login-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -18,6 +18,11 @@ export class AuthController {
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     return await this.authService.create(createUserDto);
+  }
+
+  @Post('/login')
+  async login(@Body() loginUser: LoginUser) {
+    return await this.authService.login(loginUser);
   }
 
   @Get()
