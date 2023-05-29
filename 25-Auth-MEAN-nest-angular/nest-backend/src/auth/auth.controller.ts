@@ -17,6 +17,7 @@ import { LoginResponse } from './interfaces/login-response';
 import { AuthGuard } from './guards/auth.guard';
 import { UserFromToken } from 'src/decorators/user-id.decorators';
 import { User } from './entities/user.entity';
+import { Document } from 'mongoose';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -38,24 +39,15 @@ export class AuthController {
 
   @Get()
   @UseGuards(AuthGuard)
-  findAll(@UserFromToken() userId: User) {
-    console.log('controller findAll', userId);
-
+  findAll(@UserFromToken() user: User) {
     return this.authService.findAll();
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.authService.findOne(+id);
-  // }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.authService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.authService.remove(+id);
+  @Get('/check-token')
+  @UseGuards(AuthGuard)
+  async checkToken(@UserFromToken() user: User): Promise<LoginResponse> {
+    return await this.authService.successLogin(
+      user as unknown as Document<User>,
+    );
   }
 }

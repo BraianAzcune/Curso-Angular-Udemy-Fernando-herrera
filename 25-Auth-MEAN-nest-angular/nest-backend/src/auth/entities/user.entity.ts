@@ -3,6 +3,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema()
 export class User {
   // mongo crea el _id
+  _id: string;
+
   @Prop({ default: false })
   isActive: boolean;
   @Prop({ unique: true, required: true })
