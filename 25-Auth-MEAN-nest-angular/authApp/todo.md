@@ -1,0 +1,3 @@
+
+crear un modulo shared, con las paginas
+404, 500, 400, etc...
