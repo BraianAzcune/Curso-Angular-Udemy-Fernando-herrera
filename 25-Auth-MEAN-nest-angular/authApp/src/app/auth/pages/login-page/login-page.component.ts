@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   templateUrl: './login-page.component.html',
@@ -7,9 +8,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginPageComponent {
 
+
+
   disableSubmitButton = false;
   loadingSubmitButton = false;
 
+  private authService = inject(AuthService);
   private fb = inject(FormBuilder);
 
   loginForm = this.fb.group({
@@ -19,8 +23,18 @@ export class LoginPageComponent {
   );
 
   login() {
+    const { email, password } = this.loginForm.value;
+    if (!email || !password) {
+      alert("este error no debe ocurrir nunca, email y password estan vacios en funcion login");
+      return;
+    }
+
     this.disableSubmitButton = true;
     this.loadingSubmitButton = true;
-    console.log(this.loginForm.value);
+
+    this.authService.login(email, password).subscribe(x => console.log(x))
+
+    this.disableSubmitButton = false;
+    this.loadingSubmitButton = false;
   }
 }
