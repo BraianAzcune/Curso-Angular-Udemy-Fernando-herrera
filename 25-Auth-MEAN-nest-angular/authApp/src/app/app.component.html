@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<h1 *ngIf="isAuthCheckin(); else show">Cargando</h1>
+<ng-template #show>
+  <router-outlet></router-outlet>
+</ng-template>
