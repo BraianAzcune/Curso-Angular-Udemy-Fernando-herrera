@@ -8,8 +8,8 @@ import { AuthStatus } from '../interfaces/auth-status.enum';
 import { CheckAuthStatusResponse } from '../interfaces/check-auth-status-response.interface';
 
 enum ApiPath {
-  login = "auth/login",
-  checkToken = "auth/check-token"
+  login = 'auth/login',
+  checkToken = 'auth/check-token'
 }
 
 @Injectable({
@@ -25,6 +25,13 @@ export class AuthService {
   private _currentUser = signal<User | null>(null);
   private _authStatus = signal<AuthStatus>(AuthStatus.checking);
 
+  constructor() {
+    console.log('servicio instanciado');
+    // revisar en cuanto es instanciado
+    this.checkAuthStatus().subscribe();
+  }
+
+
   login(email: string, password: string): Observable<boolean> {
     //  TODO, no me gusta esta forma, manejar errores es algo malo, mejor que devuelva falso y decir que estan mal las credenciales y listo.
     // TODO, hay que considerar casos 500, cassos de not found, bad request, y unauthorized
@@ -33,16 +40,25 @@ export class AuthService {
         map(this.setStatusAndUser),
         catchError(err => {
           this._authStatus.set(AuthStatus.notAuthenticated);
-          return throwError(() => err.error.message[0])
+          return throwError(() => err.error.message[0]);
         })
-      )
+      );
+  }
+
+  logout(){
+    this._authStatus.set(AuthStatus.notAuthenticated);
+    this._currentUser.set(null);
+    localStorage.setItem('token-angular', '');
   }
 
   checkAuthStatus(): Observable<boolean> {
-    const token = localStorage.getItem("token-angular");
-    if (!token) return of(false);
+    const token = localStorage.getItem('token-angular');
+    if (!token) {
+      this._authStatus.set(AuthStatus.notAuthenticated);
+      return of(false);
+    }
 
-    const headers = new HttpHeaders().set("Authorization", "Bearer " + token);
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
 
     return this.http.get<CheckAuthStatusResponse>(this.baseUrl + ApiPath.checkToken, { headers })
       .pipe(
@@ -51,14 +67,14 @@ export class AuthService {
           this._authStatus.set(AuthStatus.notAuthenticated);
           return of(false);
         })
-      )
+      );
   }
 
   private readonly setStatusAndUser = (obj: LoginResponse | CheckAuthStatusResponse) => {
     this._authStatus.set(AuthStatus.authenticated);
     this._currentUser.set(obj.user);
     // TODO se podria usar session storage o cookies, mucho mejor.
-    localStorage.setItem("token-angular", obj.token);
+    localStorage.setItem('token-angular', obj.token);
     return true;
-  }
+  };
 }
