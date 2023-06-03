@@ -6,21 +6,21 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: AuthLayoutComponent,
     children: [
       {
-        path: "register",
+        path: 'register',
         component: RegisterPageComponent
       },
       {
-        path: "login",
+        path: 'login',
         component: LoginPageComponent
       },
       {
-        path: "",
-        redirectTo: "login",
-        pathMatch: "full"
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
       }
     ]
   }

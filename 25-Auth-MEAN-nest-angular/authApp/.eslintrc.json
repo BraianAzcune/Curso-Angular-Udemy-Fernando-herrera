@@ -47,7 +47,7 @@
         ],
         "max-len": [
           "error",
-          100
+          140
         ],
         "no-var": "warn",
         "no-self-compare": "error",

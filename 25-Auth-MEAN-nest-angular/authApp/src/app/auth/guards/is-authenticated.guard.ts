@@ -4,11 +4,9 @@ import { AuthService } from '../services/auth.service';
 import { AuthStatus } from '../interfaces/auth-status.enum';
 
 export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
-  const url = state.url;
-  localStorage.setItem('pathRequested', url);
-
   const authService = inject(AuthService);
   if (authService.authStatus() === AuthStatus.authenticated) {
+    // si existieran rangos de autenticacion, habria que ver las credenciales a detalle, pero esa logica, deberia estar en otros guards
     return true;
   }
   if (authService.authStatus() === AuthStatus.checking) {

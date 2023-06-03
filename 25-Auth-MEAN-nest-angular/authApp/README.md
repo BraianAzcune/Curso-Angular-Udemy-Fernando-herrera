@@ -12,3 +12,19 @@ Se agrega eslint
 `https://github.com/angular-eslint/angular-eslint`
 
 `ng add @angular-eslint/schematics`
+
+## Mock backend json-server
+
+
+
+Explicacion tecnica crear diagramas UML para proyectos Angular
+
+`https://admiraalit.nl/admiraal/Technical-design-for-Angular-apps.pdf`
+
+
+# UML diagramas
+
+### Package diagram
+
+![Alt text](./diagrams/Package%20Angular25.drawio.svg)
+

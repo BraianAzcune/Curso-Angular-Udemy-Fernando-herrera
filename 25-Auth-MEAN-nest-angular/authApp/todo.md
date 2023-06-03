@@ -12,3 +12,6 @@ TODO
 Centralizar el uso del localstorage y las claves utilizadas en algun servicio, para que no haya errores de tipeo.
 TODO
 buscar una forma de centraliza las redirecciones, usar navigatebyurl y pasar un string, es potencialmente perjudicial ya que si se cambia esa direccion hay que rastraer todos los lugares donde se usa.
+
+
+agregar testing end to end

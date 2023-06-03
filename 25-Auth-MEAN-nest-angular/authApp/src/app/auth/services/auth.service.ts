@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, computed, inject, signal, effect } from '@angular/core';
 import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environments';
 import { LoginResponse } from '../interfaces/login-response.interface';
@@ -39,7 +39,7 @@ export class AuthService {
       pipe(
         map(this.setStatusAndUser),
         catchError(err => {
-          this._authStatus.set(AuthStatus.notAuthenticated);
+          this.logout();
           return throwError(() => err.error.message[0]);
         })
       );
@@ -54,7 +54,7 @@ export class AuthService {
   checkAuthStatus(): Observable<boolean> {
     const token = localStorage.getItem('token-angular');
     if (!token) {
-      this._authStatus.set(AuthStatus.notAuthenticated);
+      this.logout();
       return of(false);
     }
 
@@ -64,7 +64,7 @@ export class AuthService {
       .pipe(
         map(this.setStatusAndUser),
         catchError(() => {
-          this._authStatus.set(AuthStatus.notAuthenticated);
+          this.logout();
           return of(false);
         })
       );
