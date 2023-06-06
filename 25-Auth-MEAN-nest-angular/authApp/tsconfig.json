@@ -2,6 +2,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "types": [
+      "cypress",
+      "node"
+    ],
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -10,7 +14,8 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
+    // "sourceMap": true,
+    "inlineSourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,

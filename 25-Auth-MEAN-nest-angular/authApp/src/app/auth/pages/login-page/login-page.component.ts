@@ -20,8 +20,8 @@ export class LoginPageComponent {
   private readonly fb = inject(FormBuilder);
 
   readonly loginForm = this.fb.group({
-    email: ['pedro@test.com', [Validators.required, Validators.email]],
-    password: ['123456', [Validators.required, Validators.minLength(6)]]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   }
   );
 
