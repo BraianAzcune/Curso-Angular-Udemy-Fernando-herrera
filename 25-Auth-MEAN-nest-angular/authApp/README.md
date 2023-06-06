@@ -30,5 +30,12 @@ Explicacion tecnica crear diagramas UML para proyectos Angular
 
 ### Package diagram
 
+Diagrama de modulos
+
 ![Alt text](./diagrams/Package%20Angular25.drawio.svg)
 
+### Sequence diagram
+
+Diagrama login usuario en una maquina limpia
+
+![Alt text](./diagrams/sequencia-login.drawio.svg)
