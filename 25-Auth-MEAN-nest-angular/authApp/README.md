@@ -13,10 +13,6 @@ Se agrega eslint
 
 `ng add @angular-eslint/schematics`
 
-## Mock backend json-server
-
-
-
 Explicacion tecnica crear diagramas UML para proyectos Angular
 
 `https://admiraalit.nl/admiraal/Technical-design-for-Angular-apps.pdf`
