@@ -3,6 +3,7 @@ import { AuthService } from './auth/services/auth.service';
 import { AuthStatus } from './auth/interfaces/auth-status.enum';
 import { Router, GuardsCheckStart, GuardsCheckEnd } from '@angular/router';
 import { filter } from 'rxjs';
+import { StorageService, keyType } from './shared/services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent {
   });
   private readonly router = inject(Router);
 
-  constructor(){
+  constructor(private readonly storage: StorageService){
     this.subscribeToGuardsCheckEndEvent();
   }
   /**
@@ -51,7 +52,7 @@ export class AppComponent {
       const e = event as GuardsCheckEnd;
       if(e.shouldActivate == false && this.authService.authStatus() === AuthStatus.notAuthenticated){
         // si es una URL de acceso rechazado y no esta autenticado guardar esa direccion, cuando este autenticado se lo redirecionara ahi
-        localStorage.setItem('pathRequested', e.url);
+        this.storage.set(keyType.pathRequested, e.url);
       }
     });
   }
