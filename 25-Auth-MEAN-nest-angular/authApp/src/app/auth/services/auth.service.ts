@@ -48,7 +48,7 @@ export class AuthService {
         map(this.setStatusAndUser),
         catchError(err => {
           this.logout();
-          return throwError(() => err.error.message[0]);
+          return throwError(() => err.error.message.join('\n'));
         })
       );
   }

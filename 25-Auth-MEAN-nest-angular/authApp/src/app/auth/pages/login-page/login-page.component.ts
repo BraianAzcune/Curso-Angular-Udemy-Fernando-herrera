@@ -41,6 +41,7 @@ export class LoginPageComponent {
           this.router.navigateByUrl('/dashboard');
         },
         error: (errMessage) => {
+          console.log(errMessage);
           Swal.fire('Error', errMessage, 'error');
         }
       });

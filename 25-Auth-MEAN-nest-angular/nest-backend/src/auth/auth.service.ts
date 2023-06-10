@@ -38,14 +38,14 @@ export class AuthService {
     const user = await this.userModel.findOne({ email: loginUser.email });
     if (user == null) {
       // aunque sabemos que fallo el email, no esta correcto emitir la informacion de que dicho email no existe.
-      throw new UnauthorizedException(
+      throw new UnauthorizedException([
         'credenciales erroneas, verifique email y password',
-      );
+      ]);
     }
     if ((await bcrypt.compare(loginUser.password, user.password)) == false) {
-      throw new UnauthorizedException(
+      throw new UnauthorizedException([
         'credenciales erroneas, verifique email y password',
-      );
+      ]);
     }
     return this.successLogin(user as unknown as Document<User>);
   }
